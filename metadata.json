@@ -1,0 +1,7 @@
+{
+  "name": "Meddeb",
+  "description": "Une application de prière complète avec horaires géo-localisés, lecture du Coran avec récitateur et section Douas.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
