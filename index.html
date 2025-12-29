@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meddeb - Votre compagnon spirituel</title>
-    <!-- Tailwind CSS via CDN pour le style immédiat -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -29,10 +28,9 @@
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
         .animate-pulse-fast { animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
         #root { min-height: 100vh; display: flex; flex-direction: column; }
-        /* Style pour l'erreur si le JS ne charge pas */
         #js-error { display: none; position: fixed; inset: 0; background: #020617; z-index: 9999; padding: 2rem; color: #ef4444; font-family: monospace; }
     </style>
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="./manifest.json">
 <script type="importmap">
 {
   "imports": {
@@ -47,7 +45,6 @@
 </script>
 </head>
 <body class="bg-[#020617]">
-    <!-- Bloc d'erreur caché par défaut -->
     <div id="js-error" class="flex flex-col items-center justify-center text-center">
         <h1 class="text-2xl font-bold mb-4">Erreur de chargement</h1>
         <p class="text-slate-400">Le script de l'application n'a pas pu démarrer.</p>
@@ -55,7 +52,6 @@
     </div>
 
     <div id="root">
-        <!-- Ce loader est statique, il sera remplacé dès que React démarre -->
         <div id="fallback-loader" class="flex flex-col items-center justify-center min-h-screen space-y-4 w-full">
             <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" class="w-20 h-20 animate-pulse-fast text-emerald-500">
                 <path d="M12 2C10.6 2 9.25 2.23 8 2.64C10.74 3.91 12.61 6.64 12.61 9.8C12.61 13.9 9.3 17.21 5.2 17.21C4.05 17.21 2.97 16.94 2 16.48C3.17 19.74 6.31 22 10 22C14.42 22 18 18.42 18 14C18 10.31 15.74 7.17 12.48 6C12.16 4.7 12 3.37 12 2Z" fill="currentColor" fill-opacity="0.2"/>
@@ -71,17 +67,14 @@
         </div>
     </div>
 
-    <!-- Script de diagnostic pour afficher l'erreur si le module échoue -->
     <script>
         window.addEventListener('error', function(e) {
-            if (e.target.tagName === 'SCRIPT') {
+            if (e.target && e.target.tagName === 'SCRIPT') {
                 document.getElementById('js-error').style.display = 'flex';
                 document.getElementById('fallback-loader').style.display = 'none';
             }
         }, true);
     </script>
-
-    <!-- Point d'entrée principal pour Vite -->
-    <script type="module" src="/index.tsx"></script>
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>
