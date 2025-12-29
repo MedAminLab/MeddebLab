@@ -28,7 +28,6 @@
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
         .animate-pulse-fast { animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
         #root { min-height: 100vh; display: flex; flex-direction: column; }
-        #js-error { display: none; position: fixed; inset: 0; background: #020617; z-index: 9999; padding: 2rem; color: #ef4444; font-family: monospace; text-align: center; }
     </style>
     <link rel="manifest" href="manifest.json">
 <script type="importmap">
@@ -45,35 +44,19 @@
 </script>
 </head>
 <body class="bg-[#020617]">
-    <!-- UI d'erreur de secours -->
-    <div id="js-error" class="flex flex-col items-center justify-center">
-        <h1 class="text-2xl font-bold mb-4 text-emerald-500">Initialisation...</h1>
-        <p class="text-slate-400 mb-6 text-center max-w-xs text-sm">Si cet écran persiste, vérifiez que le déploiement GitHub Actions est terminé dans l'onglet "Actions" de votre dépôt.</p>
-        <button onclick="location.reload()" class="px-8 py-4 bg-emerald-500 text-white rounded-[24px] font-bold shadow-lg shadow-emerald-500/20 active:scale-95 transition-transform">Actualiser la page</button>
-    </div>
-
     <div id="root">
-        <!-- Loader animé -->
+        <!-- Loader affiché pendant le chargement -->
         <div id="fallback-loader" class="flex flex-col items-center justify-center min-h-screen space-y-4 w-full">
             <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" class="w-20 h-20 animate-pulse-fast text-emerald-500">
                 <path d="M12 2C10.6 2 9.25 2.23 8 2.64C10.74 3.91 12.61 6.64 12.61 9.8C12.61 13.9 9.3 17.21 5.2 17.21C4.05 17.21 2.97 16.94 2 16.48C3.17 19.74 6.31 22 10 22C14.42 22 18 18.42 18 14C18 10.31 15.74 7.17 12.48 6C12.16 4.7 12 3.37 12 2Z" fill="currentColor" fill-opacity="0.2"/>
             </svg>
             <div class="flex flex-col items-center gap-2">
               <p class="text-emerald-500 font-bold tracking-[0.4em] text-sm animate-pulse">MEDDEB</p>
-              <p class="text-[10px] text-slate-500 tracking-[0.2em] font-medium uppercase">Chargement de l'application...</p>
+              <p class="text-[10px] text-slate-500 tracking-[0.2em] font-medium uppercase">Chargement...</p>
             </div>
         </div>
     </div>
-
-    <script>
-        window.addEventListener('error', function(e) {
-            if (e.target && (e.target.tagName === 'SCRIPT' || e.target.tagName === 'LINK')) {
-                document.getElementById('js-error').style.display = 'flex';
-                document.getElementById('fallback-loader').style.display = 'none';
-            }
-        }, true);
-    </script>
-    <!-- Point d'entrée standard pour Vite -->
-    <script type="module" src="/index.tsx"></script>
+    <!-- Script d'entrée avec chemin relatif pour le build Vite -->
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>
