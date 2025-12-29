@@ -2,8 +2,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// Remplacez 'meddeb' par le nom exact de votre repository GitHub
+// Le nom doit correspondre exactement au nom du repository GitHub (MeddebLab)
 export default defineConfig({
   plugins: [react()],
-  base: '/meddeb/',
+  base: '/MeddebLab/',
 });
