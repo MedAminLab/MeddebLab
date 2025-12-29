@@ -7,6 +7,7 @@ export default defineConfig({
   base: '/MeddebLab/',
   build: {
     outDir: 'dist',
+    assetsDir: 'assets',
     emptyOutDir: true,
     sourcemap: false
   }
