@@ -28,6 +28,7 @@
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
         .animate-pulse-fast { animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
         #root { min-height: 100vh; display: flex; flex-direction: column; }
+        #debug-error { display: none; position: fixed; bottom: 20px; left: 20px; right: 20px; background: #ef4444; color: white; padding: 15px; border-radius: 12px; font-size: 12px; z-index: 10000; font-family: monospace; }
     </style>
     <link rel="manifest" href="manifest.json">
 <script type="importmap">
@@ -46,17 +47,30 @@
 <body class="bg-[#020617]">
     <div id="root">
         <!-- Loader affiché pendant le chargement -->
-        <div id="fallback-loader" class="flex flex-col items-center justify-center min-h-screen space-y-4 w-full">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" class="w-20 h-20 animate-pulse-fast text-emerald-500">
+        <div id="fallback-loader" class="flex flex-col items-center justify-center min-h-screen space-y-6 w-full">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" class="w-24 h-24 animate-pulse-fast text-emerald-500">
                 <path d="M12 2C10.6 2 9.25 2.23 8 2.64C10.74 3.91 12.61 6.64 12.61 9.8C12.61 13.9 9.3 17.21 5.2 17.21C4.05 17.21 2.97 16.94 2 16.48C3.17 19.74 6.31 22 10 22C14.42 22 18 18.42 18 14C18 10.31 15.74 7.17 12.48 6C12.16 4.7 12 3.37 12 2Z" fill="currentColor" fill-opacity="0.2"/>
             </svg>
             <div class="flex flex-col items-center gap-2">
-              <p class="text-emerald-500 font-bold tracking-[0.4em] text-sm animate-pulse">MEDDEB</p>
-              <p class="text-[10px] text-slate-500 tracking-[0.2em] font-medium uppercase">Chargement...</p>
+              <p class="text-emerald-500 font-bold tracking-[0.5em] text-lg">MEDDEB</p>
+              <p class="text-[10px] text-slate-500 tracking-[0.2em] font-medium uppercase animate-pulse">Initialisation du système...</p>
             </div>
         </div>
     </div>
-    <!-- Script d'entrée avec chemin relatif pour le build Vite -->
-    <script type="module" src="./index.tsx"></script>
+
+    <div id="debug-error"></div>
+
+    <script>
+        // Système de secours pour afficher les erreurs critiques sur l'écran
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            var debug = document.getElementById('debug-error');
+            debug.style.display = 'block';
+            debug.innerHTML = 'Erreur détectée : ' + msg + ' (Ligne: ' + lineNo + ')';
+            return false;
+        };
+    </script>
+    
+    <!-- Utilisation du chemin relatif exact pour que Vite puisse trouver le fichier au build -->
+    <script type="module" src="/index.tsx"></script>
 </body>
 </html>
