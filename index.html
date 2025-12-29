@@ -32,8 +32,8 @@
         .arabic-text { font-family: 'Amiri', serif; direction: rtl; }
         @media all and (display-mode: standalone) { body { user-select: none; } }
     </style>
-    <!-- Manifest avec icône Croissant pour Android -->
-    <link rel="manifest" href='data:application/json,{"name":"Meddeb","short_name":"Meddeb","start_url":"/meddeb/","display":"standalone","background_color":"#0f172a","theme_color":"#10b981","icons":[{"src":"https://cdn-icons-png.flaticon.com/512/2924/2924513.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]}'>
+    <!-- Manifest avec chemin relatif pour le repo MeddebLab -->
+    <link rel="manifest" href='data:application/json,{"name":"Meddeb","short_name":"Meddeb","start_url":"/MeddebLab/","display":"standalone","background_color":"#0f172a","theme_color":"#10b981","icons":[{"src":"https://cdn-icons-png.flaticon.com/512/2924/2924513.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]}'>
 <script type="importmap">
 {
   "imports": {
@@ -49,6 +49,7 @@
 </head>
 <body class="bg-[#0f172a] dark:bg-[#020617] transition-colors duration-300">
     <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
+    <!-- CHANGEMENT ICI : Utilisation d'un chemin relatif ./ au lieu de / -->
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>
