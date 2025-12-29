@@ -23,12 +23,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #020617; color: white; }
+        body { font-family: 'Inter', sans-serif; background-color: #020617; color: white; margin: 0; }
         .arabic-text { font-family: 'Amiri', serif; direction: rtl; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
         .animate-pulse-fast { animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
     </style>
-    <link rel="manifest" href='data:application/json,{"name":"Meddeb","short_name":"Meddeb","start_url":"/MeddebLab/","display":"standalone","background_color":"#0f172a","theme_color":"#10b981","icons":[{"src":"https://cdn-icons-png.flaticon.com/512/2924/2924513.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]}'>
+    <!-- Manifest avec chemin relatif -->
+    <link rel="manifest" href="./manifest.json">
 <script type="importmap">
 {
   "imports": {
@@ -44,15 +45,18 @@
 </head>
 <body class="bg-[#020617] min-h-screen">
     <div id="root">
-        <!-- Loader de secours affiché pendant que le JS charge -->
+        <!-- Ce loader disparaîtra dès que React sera chargé -->
         <div id="fallback-loader" class="flex flex-col items-center justify-center min-h-screen space-y-4">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" class="w-12 h-12 animate-pulse-fast">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" class="w-16 h-16 animate-pulse-fast text-emerald-500">
                 <path d="M12 2C10.6 2 9.25 2.23 8 2.64C10.74 3.91 12.61 6.64 12.61 9.8C12.61 13.9 9.3 17.21 5.2 17.21C4.05 17.21 2.97 16.94 2 16.48C3.17 19.74 6.31 22 10 22C14.42 22 18 18.42 18 14C18 10.31 15.74 7.17 12.48 6C12.16 4.7 12 3.37 12 2Z" fill="currentColor" fill-opacity="0.2"/>
             </svg>
-            <p class="text-emerald-500 font-bold tracking-widest text-xs animate-pulse">CHARGEMENT MEDDEB...</p>
+            <div class="flex flex-col items-center gap-1">
+              <p class="text-emerald-500 font-bold tracking-[0.3em] text-[10px] animate-pulse">MEDDEB</p>
+              <p class="text-slate-500 text-[9px] uppercase tracking-widest">Initialisation...</p>
+            </div>
         </div>
     </div>
-    <!-- Utilisation du chemin absolu pour Vite -->
-    <script type="module" src="/index.tsx"></script>
+    <!-- CHANGEMENT CRITIQUE : Utilisation de ./ pour que Vite trouve le fichier dans le dossier MeddebLab -->
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>
