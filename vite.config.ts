@@ -4,11 +4,9 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/MeddebLab/',
+  base: './', // Utilise des chemins relatifs pour fonctionner partout
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
-    emptyOutDir: true,
-    sourcemap: false
+    emptyOutDir: true
   }
 });
