@@ -45,19 +45,19 @@
 </head>
 <body class="bg-[#020617]">
     <div id="root">
-        <!-- Loader affiché pendant le chargement -->
+        <!-- Loader initial statique -->
         <div id="fallback-loader" class="flex flex-col items-center justify-center min-h-screen space-y-6 w-full">
             <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" class="w-24 h-24 animate-pulse-fast text-emerald-500">
                 <path d="M12 2C10.6 2 9.25 2.23 8 2.64C10.74 3.91 12.61 6.64 12.61 9.8C12.61 13.9 9.3 17.21 5.2 17.21C4.05 17.21 2.97 16.94 2 16.48C3.17 19.74 6.31 22 10 22C14.42 22 18 18.42 18 14C18 10.31 15.74 7.17 12.48 6C12.16 4.7 12 3.37 12 2Z" fill="currentColor" fill-opacity="0.2"/>
             </svg>
             <div class="flex flex-col items-center gap-2">
               <p class="text-emerald-500 font-bold tracking-[0.5em] text-lg">MEDDEB</p>
-              <p class="text-[10px] text-slate-500 tracking-[0.2em] font-medium uppercase animate-pulse">Initialisation...</p>
+              <p class="text-[10px] text-slate-500 tracking-[0.2em] font-medium uppercase animate-pulse">Initialisation du système...</p>
             </div>
         </div>
     </div>
     
-    <!-- Chemin relatif crucial pour GitHub Pages -->
-    <script type="module" src="./index.tsx"></script>
+    <!-- Vite transformera ce chemin automatiquement lors du build -->
+    <script type="module" src="/index.tsx"></script>
 </body>
 </html>
