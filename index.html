@@ -28,7 +28,6 @@
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
         .animate-pulse-fast { animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
         #root { min-height: 100vh; display: flex; flex-direction: column; }
-        #debug-error { display: none; position: fixed; bottom: 20px; left: 20px; right: 20px; background: #ef4444; color: white; padding: 15px; border-radius: 12px; font-size: 12px; z-index: 10000; font-family: monospace; }
     </style>
     <link rel="manifest" href="manifest.json">
 <script type="importmap">
@@ -53,24 +52,12 @@
             </svg>
             <div class="flex flex-col items-center gap-2">
               <p class="text-emerald-500 font-bold tracking-[0.5em] text-lg">MEDDEB</p>
-              <p class="text-[10px] text-slate-500 tracking-[0.2em] font-medium uppercase animate-pulse">Initialisation du système...</p>
+              <p class="text-[10px] text-slate-500 tracking-[0.2em] font-medium uppercase animate-pulse">Initialisation...</p>
             </div>
         </div>
     </div>
-
-    <div id="debug-error"></div>
-
-    <script>
-        // Système de secours pour afficher les erreurs critiques sur l'écran
-        window.onerror = function(msg, url, lineNo, columnNo, error) {
-            var debug = document.getElementById('debug-error');
-            debug.style.display = 'block';
-            debug.innerHTML = 'Erreur détectée : ' + msg + ' (Ligne: ' + lineNo + ')';
-            return false;
-        };
-    </script>
     
-    <!-- Utilisation du chemin relatif exact pour que Vite puisse trouver le fichier au build -->
-    <script type="module" src="/index.tsx"></script>
+    <!-- Chemin relatif crucial pour GitHub Pages -->
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>
