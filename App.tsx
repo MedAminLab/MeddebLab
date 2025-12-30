@@ -19,9 +19,11 @@ const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'home' | 'quran' | 'duas' | 'settings'>('home');
   const [isDarkMode, setIsDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('meddeb_theme');
+      if (saved) return saved === 'dark';
       return document.documentElement.classList.contains('dark');
     }
-    return false;
+    return true;
   });
   const [language, setLanguage] = useState<Language>(() => {
     const saved = localStorage.getItem('meddeb_lang');
@@ -40,6 +42,15 @@ const App: React.FC = () => {
     const saved = localStorage.getItem('meddeb_last_read');
     return saved ? JSON.parse(saved) : null;
   });
+
+  // Suppression forcée du loader au montage de l'application
+  useEffect(() => {
+    const loader = document.getElementById('fallback-loader');
+    if (loader) {
+      loader.style.opacity = '0';
+      setTimeout(() => loader.remove(), 500);
+    }
+  }, []);
 
   const selectedLocation = locations.find(l => l.id === selectedLocationId) || locations[0];
 
