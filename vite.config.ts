@@ -4,10 +4,14 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  // Utiliser './' permet au projet de fonctionner quel que soit le nom du sous-dossier
-  base: './',
+  // La base doit correspondre exactement au nom de votre dépôt GitHub
+  base: '/MeddebLab/',
   build: {
     outDir: 'dist',
     emptyOutDir: true,
+    sourcemap: false
+  },
+  server: {
+    port: 3000,
   }
 });
